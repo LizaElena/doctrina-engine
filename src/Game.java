@@ -9,9 +9,13 @@ public abstract class Game {
 
     public Game(){
         renderingEngine = new RenderingEngine();
-        initialize();
     }
     public void start(){
+        initialize();
+        run();
+    }
+
+    private void run() {
         renderingEngine.start();
         updateSyncTime();
         while (playing){
@@ -21,6 +25,7 @@ public abstract class Game {
             sleep();
         }
     }
+
     protected abstract void initialize();
     protected abstract void update();
     protected abstract void drawOnBuffer(Graphics2D bufferEngine);
