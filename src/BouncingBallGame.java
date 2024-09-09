@@ -7,9 +7,11 @@ public class BouncingBallGame extends Game {
     private Ball ball;
 
 
-    public BouncingBallGame(){
+    @Override
+    protected void initialize() {
         ball = new Ball(25);
     }
+
     @Override
     public void update(){
         ball.update();

@@ -9,6 +9,7 @@ public abstract class Game {
 
     public Game(){
         renderingEngine = new RenderingEngine();
+        initialize();
     }
     public void start(){
         renderingEngine.start();
@@ -20,8 +21,10 @@ public abstract class Game {
             sleep();
         }
     }
+    protected abstract void initialize();
     protected abstract void update();
     protected abstract void drawOnBuffer(Graphics2D bufferEngine);
+
     private void sleep(){
 
         try {
