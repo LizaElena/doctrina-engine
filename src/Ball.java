@@ -20,7 +20,6 @@ public class Ball {
         this(raduis, DEFAULT_SPEED);
     }
 
-
     private void initializePosition(){
          x = randomNumber(radius*2, 800 - radius*2);
          y = randomNumber(radius*2, 600 - radius*2);

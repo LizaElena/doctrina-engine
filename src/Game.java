@@ -1,9 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Random;
 
-public class GameWindow extends JFrame {
+public class Game   {
+    private JFrame frame;
 
     private static final int SLEEP = 25;
     private JPanel panel;
@@ -16,25 +16,18 @@ public class GameWindow extends JFrame {
 
 
 
-    public GameWindow(){
-        setSize(800, 600);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setTitle("Bouncing Balls");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setState(JFrame.NORMAL);
-
-        panel = new JPanel();
-        panel.setBackground(Color.BLUE);
-        panel.setFocusable(true);
-        panel.setDoubleBuffered(true);
-        add(panel);
+    public Game(){
+        initializeFrame();
+        initializePanel();
+        ball = new Ball(25);
     }
 
+
+
     public void start(){
-        setVisible(true);
+        frame.setVisible(true);
         before = System.currentTimeMillis();
-        ball = new Ball(25);
+
 
         while (playing){
             bufferedImage = new BufferedImage(800, 600, BufferedImage.TYPE_INT_RGB);
@@ -89,6 +82,23 @@ public class GameWindow extends JFrame {
         graphics.dispose();
     }
 
+    private void initializePanel() {
+        panel = new JPanel();
+        panel.setBackground(Color.BLUE);
+        panel.setFocusable(true);
+        panel.setDoubleBuffered(true);
+        frame.add(panel);
+    }
 
+    private void initializeFrame() {
+        frame = new JFrame();
+        frame.setSize(800, 600);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setTitle("Bouncing Balls");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setState(JFrame.NORMAL);
+        //frame.setUndecorated(true);
+    }
 
 }
