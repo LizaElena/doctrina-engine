@@ -1,25 +1,15 @@
-
 import java.awt.*;
 
-
-public class Game   {
-    private RenderingEngine renderingEngine;
+public abstract class Game {
     private static final int SLEEP = 25;
     private boolean playing = true;
     private long before;
-
-
-
-    private int score;
-    private Ball ball;
-
+    private RenderingEngine renderingEngine;
 
 
     public Game(){
         renderingEngine = new RenderingEngine();
-        ball = new Ball(25);
     }
-
     public void start(){
         renderingEngine.start();
         updateSyncTime();
@@ -30,7 +20,8 @@ public class Game   {
             sleep();
         }
     }
-
+    protected abstract void update();
+    protected abstract void drawOnBuffer(Graphics2D bufferEngine);
     private void sleep(){
 
         try {
@@ -48,23 +39,7 @@ public class Game   {
         }
         return sleep;
     }
-
-    private void update(){
-        ball.update();
-        if (  ball.hasTouched()  ){
-            score += 10;
-        }
-    }
-
-    private void drawOnBuffer(Graphics2D bufferEngine){
-        ball.draw(bufferEngine);
-        bufferEngine.setPaint(Color.WHITE);
-        bufferEngine.drawString("Score: " + score, 10, 20);
-    }
-
     private void updateSyncTime() {
         before = System.currentTimeMillis();
     }
-
-
 }
