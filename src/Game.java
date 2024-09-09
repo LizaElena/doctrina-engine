@@ -10,7 +10,7 @@ public abstract class Game {
     public Game(){
         renderingEngine = new RenderingEngine();
     }
-    public void start(){
+    public final void start(){
         initialize();
         run();
     }
