@@ -26,7 +26,7 @@ public class Game   {
 
     public void start(){
         frame.setVisible(true);
-        before = System.currentTimeMillis();
+        updateSyncTime();
 
 
         while (playing){
@@ -53,9 +53,11 @@ public class Game   {
                 throw new RuntimeException(e);
             }
 
-            before = System.currentTimeMillis();
+            updateSyncTime();
         }
     }
+
+
 
 
     private void update(){
@@ -81,7 +83,9 @@ public class Game   {
         Toolkit.getDefaultToolkit().sync();
         graphics.dispose();
     }
-
+    private void updateSyncTime() {
+        before = System.currentTimeMillis();
+    }
     private void initializePanel() {
         panel = new JPanel();
         panel.setBackground(Color.BLUE);
