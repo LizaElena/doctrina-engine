@@ -1,29 +1,30 @@
 package MovingRectangle;
 
 import Doctrina.Canvas;
+import Doctrina.Controller;
 
 import java.awt.*;
 
 public class Player {
-    private Controller controller;
+    private GamePad gamepad;
     private int x;
     private int y;
     private int speed;
-    public Player(Controller controller){
+    public Player(GamePad gamePad){
         x = 200;
         y = 200;
         speed = 3;
-        this.controller = controller;
+        this.gamepad = gamePad;
     }
 
     public void update(){
-       if (controller.isDownPressed()){
+       if (gamepad.isDownPressed()){
            y += speed;
-       } else if (controller.isUpPressed()) {
+       } else if (gamepad.isUpPressed()) {
            y -= speed;
-       }else if (controller.isLeftPressed()) {
+       }else if (gamepad.isLeftPressed()) {
            x -= speed;
-       }else if (controller.isRightPressed()) {
+       }else if (gamepad.isRightPressed()) {
            x += speed;
        }
     }

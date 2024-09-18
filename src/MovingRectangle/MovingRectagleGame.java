@@ -1,19 +1,20 @@
 package MovingRectangle;
 
 import Doctrina.Canvas;
+import Doctrina.Controller;
 import Doctrina.Game;
 
 import java.awt.*;
 
 public class MovingRectagleGame extends Game {
-    private Controller controller;
+    private GamePad gamePad;
     private Player player;
     private Npc npc;
     @Override
     protected void initialize() {
-        controller = new Controller();
-        super.addKeyListenner(controller);
-        player = new Player(controller);
+        gamePad = new GamePad();
+        super.addKeyListenner(gamePad);
+        player = new Player(gamePad);
         npc = new Npc();
     }
 
