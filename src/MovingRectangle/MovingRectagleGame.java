@@ -6,11 +6,14 @@ import Doctrina.Game;
 import java.awt.*;
 
 public class MovingRectagleGame extends Game {
+    private Controller controller;
     private Player player;
     private Npc npc;
     @Override
     protected void initialize() {
-        player = new Player();
+        controller = new Controller();
+        super.addKeyListenner(controller);
+        player = new Player(controller);
         npc = new Npc();
     }
 

@@ -4,6 +4,7 @@ import Doctrina.Canvas;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 public class RenderingEngine {
@@ -37,6 +38,9 @@ public class RenderingEngine {
         graphics.dispose();
     }
 
+    public  void addKeyListenner(KeyListener keyListener){
+        panel.addKeyListener(keyListener);
+    }
     private void initializePanel() {
         panel = new JPanel();
         panel.setBackground(Color.BLUE);

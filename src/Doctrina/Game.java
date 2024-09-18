@@ -1,5 +1,7 @@
 package Doctrina;
 
+import java.awt.event.KeyListener;
+
 public abstract class Game {
 
     private boolean playing = true;
@@ -13,7 +15,9 @@ public abstract class Game {
         initialize();
         run();
     }
-
+    public  void addKeyListenner(KeyListener keyListener){
+        renderingEngine.addKeyListenner(keyListener);
+    }
     private void run() {
         renderingEngine.start();
         gameTime = new GameTime();
