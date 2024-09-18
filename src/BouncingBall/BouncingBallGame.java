@@ -1,3 +1,8 @@
+package BouncingBall;
+
+import Doctrina.Canvas;
+import Doctrina.Game;
+import Doctrina.GameTime;
 
 import java.awt.*;
 

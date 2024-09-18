@@ -1,3 +1,7 @@
+package Doctrina;
+
+import Doctrina.Canvas;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -20,7 +24,7 @@ public class RenderingEngine {
         frame.dispose();
     }
 
-    public Canvas buildCanvas(){
+    public Doctrina.Canvas buildCanvas(){
         bufferedImage = new BufferedImage(800, 600, BufferedImage.TYPE_INT_RGB);
         bufferEngine = bufferedImage.createGraphics();
         bufferEngine.setRenderingHints(buildRenderingHints());

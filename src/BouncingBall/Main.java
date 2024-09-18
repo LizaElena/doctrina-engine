@@ -1,3 +1,7 @@
+package BouncingBall;
+
+import BouncingBall.BouncingBallGame;
+
 public class Main {
     public static void main(String[] args){
 
