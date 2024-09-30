@@ -16,7 +16,7 @@ public class Footprint extends StaticEntity {
     @Override
     public void draw(Canvas canvas){
         Color color = new Color(getRandomValue(),getRandomValue(),getRandomValue());
-        canvas.drawRectagle(x,y,width,height,color);
+        canvas.drawRectagle(this,color);
     }
 
     private int getRandomValue(){
