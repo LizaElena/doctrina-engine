@@ -12,9 +12,21 @@ public class RenderingEngine {
     private JPanel panel;
     private BufferedImage bufferedImage;
     private  Graphics2D bufferEngine;
-    public RenderingEngine(){
+
+
+    private static RenderingEngine instance;
+
+
+    private RenderingEngine(){
         initializeFrame();
         initializePanel();
+    }
+
+    public static RenderingEngine getInstance(){
+        if (instance == null ){
+            instance = new RenderingEngine();
+        }
+        return instance;
     }
 
     public void start(){
@@ -57,7 +69,7 @@ public class RenderingEngine {
         frame.setTitle("Bouncing Balls");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setState(JFrame.NORMAL);
-        //frame.setUndecorated(true);
+        frame.setUndecorated(true);
     }
     private RenderingHints buildRenderingHints() {
         RenderingHints hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

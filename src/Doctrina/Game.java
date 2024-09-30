@@ -5,28 +5,31 @@ import java.awt.event.KeyListener;
 public abstract class Game {
 
     private boolean playing = true;
-    private RenderingEngine renderingEngine;
-    private GameTime gameTime;
+    private final RenderingEngine renderingEngine;
+
 
     public Game(){
-        renderingEngine = new RenderingEngine();
+        renderingEngine = RenderingEngine.getInstance();
     }
     public final void start(){
         initialize();
         run();
     }
-    public  void addKeyListenner(KeyListener keyListener){
-        renderingEngine.addKeyListenner(keyListener);
+    public final void stop(){
+        playing = false;
     }
+
+
     private void run() {
         renderingEngine.start();
-        gameTime = new GameTime();
+        GameTime gameTime = new GameTime();
         while (playing){
             update();
             draw(renderingEngine.buildCanvas());
             renderingEngine.drawBufferOnScreen();
             gameTime.synchronize();
         }
+        renderingEngine.stop();
     }
 
     protected abstract void initialize();

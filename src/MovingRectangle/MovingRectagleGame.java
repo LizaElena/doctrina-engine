@@ -13,13 +13,15 @@ public class MovingRectagleGame extends Game {
     @Override
     protected void initialize() {
         gamePad = new GamePad();
-        super.addKeyListenner(gamePad);
         player = new Player(gamePad);
         npc = new Npc();
     }
 
     @Override
     protected void update() {
+        if (gamePad.isQuitPresssed()){
+            stop();
+        }
         player.update();
         npc.update();
     }

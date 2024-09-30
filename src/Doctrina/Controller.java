@@ -9,13 +9,14 @@ public class Controller implements KeyListener {
 
     public Controller(){
         pressedKeys = new HashMap<>();
+        RenderingEngine.getInstance().addKeyListenner(this);
     }
 
     protected void bindKey(int keyCode){
         pressedKeys.put(keyCode,false);
     }
     protected void unbindKey(int keyCode){
-        pressedKeys.put(keyCode,false);
+        pressedKeys.put(keyCode,true); //TODO: Valider la methode.
     }
 
     protected void clearKeys(){
