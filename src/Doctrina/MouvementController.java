@@ -15,6 +15,22 @@ public class MouvementController extends Controller{
         bindKey(rightKey);
     }
 
+    public Direction getDirection(){
+        if (isUpPressed()){
+            return Direction.UP;
+        }
+        if (isDownPressed()){
+            return Direction.DOWN;
+        }
+        if (isLeftPressed()){
+            return Direction.LEFT;
+        }
+        if (isRightPressed()){
+            return Direction.RIGHT;
+        }
+        return null;
+    }
+
     public boolean isLeftPressed(){
         return isKeyPressed(leftKey);
     }
