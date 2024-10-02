@@ -15,6 +15,12 @@ public class MouvementController extends Controller{
         bindKey(rightKey);
     }
 
+    public void useWasdKeys(){
+        setUpKey(KeyEvent.VK_W);
+        setDownKey(KeyEvent.VK_S);
+        setLeftKey(KeyEvent.VK_A);
+        setRightKey(KeyEvent.VK_D);
+    }
     public Direction getDirection(){
         if (isUpPressed()){
             return Direction.UP;
