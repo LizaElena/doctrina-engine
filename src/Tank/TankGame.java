@@ -22,7 +22,7 @@ public class TankGame extends Game {
         bricks.add(new Brick(500,132));
         bricks.add(new Brick(516,116));
         bricks.add(new Brick(500,164));
-        bricks.add(new Brick(532,1128));
+        bricks.add(new Brick(532,148));
     }
 
     @Override
