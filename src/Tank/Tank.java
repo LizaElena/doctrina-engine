@@ -16,7 +16,7 @@ public class Tank extends ControllableEntity {
     }
 
     public Missile fire(){
-        cooldwon = 30;
+        cooldwon = 60;
         return new Missile(this);
     }
 
@@ -34,6 +34,9 @@ public class Tank extends ControllableEntity {
 
     @Override
     public void draw(Canvas canvas) {
+
         canvas.drawRectagle(this, Color.GREEN);
+        int coolDownWidth = (cooldwon * width) / 60;
+        canvas.drawRectagle(x, y-5, coolDownWidth, 2, Color.RED);
     }
 }
