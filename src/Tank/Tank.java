@@ -25,6 +25,7 @@ public class Tank extends ControllableEntity {
     }
     @Override
     public void update() {
+        super.update();
         moveWithController();
 
         if (!canFire()){
@@ -38,5 +39,13 @@ public class Tank extends ControllableEntity {
         canvas.drawRectagle(this, Color.GREEN);
         int coolDownWidth = (cooldwon * width) / 60;
         canvas.drawRectagle(x, y-5, coolDownWidth, 2, Color.RED);
+
+        //HITBOX FOR DEBUG
+        if (hasMoved()){
+            drawHitBox(canvas);
+        }
+
     }
+
+
 }

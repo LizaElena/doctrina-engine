@@ -1,6 +1,7 @@
 package Tank;
 
 import Doctrina.Canvas;
+import Doctrina.CollidableRepository;
 import Doctrina.Direction;
 import Doctrina.MovableEntity;
 
@@ -10,8 +11,10 @@ public class Missile extends MovableEntity {
     private final Direction tankDirection;
     public Missile(Tank tank) {
         setSpeed(5);
+
         tankDirection = tank.getDirection();
         initialize(tank);
+        CollidableRepository.getInstance().registredEntity(this);
     }
     private void initialize(Tank tank){
         if (tankDirection == Direction.RIGHT){

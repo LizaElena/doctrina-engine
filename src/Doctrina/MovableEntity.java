@@ -1,20 +1,41 @@
 package Doctrina;
 
-public abstract class MovableEntity extends StaticEntity{
-    private int speed = 1;
-    private Direction direction = Direction.UP;
+import java.awt.*;
 
-    public abstract void update();
+public abstract class MovableEntity extends StaticEntity{
+    private int speed = 2;
+    private Direction direction = Direction.UP;
+    private final Collision collision;
+
+    private int lastX = Integer.MIN_VALUE;
+    private int lastY = Integer.MIN_VALUE;
+    private boolean moved ;
+    public void update(){
+        moved = false;
+    }
+
+    public MovableEntity() {
+        collision = new Collision(this);
+    }
 
     public void move(){
-        x += direction.calculateVelocityX(speed);
-        y += direction.calculateVelocityY(speed);
+        int allowedSpeed = collision.getAllowedSpeed();
+        x += direction.calculateVelocityX(allowedSpeed);
+        y += direction.calculateVelocityY(allowedSpeed);
+        moved = (x != lastX || y != lastY);
+        lastX = x;
+        lastY = y;
     }
+
+
+
     public void move(Direction direction){
         this.direction = direction;
         move();
     }
-
+    public boolean hasMoved(){
+        return moved;
+    }
     public void moveUp(){
         move(Direction.UP);
     }
@@ -27,6 +48,50 @@ public abstract class MovableEntity extends StaticEntity{
     public void moveRight(){
         move(Direction.RIGHT);
     }
+
+
+    public Rectangle getHitBox(){
+        if (direction== Direction.UP){
+            return getUpperHitBox();
+        }
+        if (direction== Direction.DOWN){
+            return getLowerHitBox();
+        }
+        if (direction== Direction.LEFT){
+            return getLeftHitBox();
+        }
+        if (direction== Direction.RIGHT){
+            return getRightHitBox();
+        }
+        return getBounds();
+    }
+
+    private Rectangle getUpperHitBox() {
+        return new Rectangle(x, y - speed, width, speed);
+    }
+    private Rectangle getLowerHitBox() {
+        return new Rectangle(x, y + height, width, speed);
+    }
+    private Rectangle getLeftHitBox() {
+        return new Rectangle(x - speed, y, speed, height);
+    }
+    private Rectangle getRightHitBox() {
+        return new Rectangle(x + width, y , speed, height);
+    }
+
+
+    public boolean hitBoxIntersectWith(StaticEntity other){
+        if (other == null){
+            return false;
+        }
+        return getHitBox().intersects(other.getBounds());
+    }
+
+    public void drawHitBox(Canvas canvas){
+        Rectangle rect = getHitBox();
+        canvas.drawRectagle(rect.x, rect.y, rect.width, rect.height, Color.BLUE);
+    }
+
 
     public int getSpeed() {
         return speed;
