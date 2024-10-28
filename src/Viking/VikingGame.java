@@ -51,14 +51,7 @@ public class VikingGame extends Game {
         if (gamePad.isFirePressed() && soundCoolDown <= 0){
             soundCoolDown = 100;
 
-            try {
-                Clip clip = AudioSystem.getClip();
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getClassLoader().getResourceAsStream("audios/fire.wav"));
-                clip.open(audioInputStream);
-                clip.start();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+            SoundEffect.MURLOC.play();
         }
     }
 
