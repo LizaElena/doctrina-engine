@@ -28,4 +28,12 @@ public class Canvas {
     public void drawImage(Image image, int x, int y){
         graphics.drawImage(image,x,y,null);
     }
+
+    public void setGraphics(Graphics2D graphics) {
+        this.graphics = graphics;
+    }
+
+    public Graphics2D getGraphics() {
+        return graphics;
+    }
 }

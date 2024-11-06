@@ -7,6 +7,7 @@ import Doctrina.RenderingEngine;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import java.awt.*;
 
 public class VikingGame extends Game {
 
@@ -15,7 +16,7 @@ public class VikingGame extends Game {
     private World world;
     private Tree tree;
     //private Tree tree2;
-
+    Camera camera = new Camera(0,0);
 
     private int soundCoolDown = 0;
     @Override
@@ -23,6 +24,9 @@ public class VikingGame extends Game {
         GameConfig.setDebugEnable(false);
         gamePad = new GamePad();
         player = new Player(gamePad);
+        player.teleport(250,300);
+        camera.setX(player.getX());
+        camera.setY(player.getY());
         world = new World();
         tree = new Tree(300,300);
         //tree2 = new Tree(150,400);
@@ -52,6 +56,7 @@ public class VikingGame extends Game {
         }
 
         player.update();
+        camera.update(player);
 
         if (player.getY() < tree.getY() + 52){
             tree.blockadeFromTop();
@@ -69,10 +74,16 @@ public class VikingGame extends Game {
 
     @Override
     protected void draw(Canvas canvas) {
+
+        canvas.getGraphics().translate(- camera.getX(), - camera.getY());
+
+
         world.draw(canvas);
         //tree.draw(canvas);
         //player.draw(canvas);
         // 80 - 28 (max layer) = 52
+
+
         if (player.getY() < tree.getY() + 52){
             player.draw(canvas);
             tree.draw(canvas);
@@ -80,6 +91,10 @@ public class VikingGame extends Game {
             tree.draw(canvas);
             player.draw(canvas);
         }
+
+
+        canvas.getGraphics().translate( camera.getX(),  camera.getY());
+
 
         //TODO: à refactoriser
        /* if (player.getY() < tree2.getY() + 52){
